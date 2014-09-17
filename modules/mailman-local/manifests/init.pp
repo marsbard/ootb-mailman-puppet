@@ -14,6 +14,23 @@ class mailman-local{
 	}
 
 
+    package { "postfix":
+        ensure => present,
+    }
+
+    file { "/etc/aliases":
+        ensure => present,
+        source => "puppet:///modules/mailman-local/aliases",
+        before => Class["mailman"],
+        require => Package["postfix"],
+    }
+
+    exec { "newaliases":
+        path => "/bin:/usr/bin",
+        before => Class["mailman"],
+        require => File["/etc/aliases"],
+    }
+
 	class { 'mailman':
 	  default_url_host    => 'lists.orderofthebee.org',
 	  default_email_host  => 'lists.orderofthebee.org',

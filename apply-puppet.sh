@@ -2,6 +2,9 @@
 
 cd "`dirname $0`"
 
+
+./install-puppet-modules.sh 2>&1 > /dev/null
+
 if [ ! -f "IS_REMOTE" ]
 then
     echo 
@@ -12,10 +15,13 @@ then
     echo
     echo "  touch `pwd`/IS_REMOTE"
     echo
+    echo "Otherwise simply use:"
+    echo
+    echo "  vagrant up"
+    echo
     exit
 fi
 
 
-./install-puppet-modules.sh
 
 sudo puppet apply -v -d --modulepath="./modules:./extmodules" manifests/default.pp
