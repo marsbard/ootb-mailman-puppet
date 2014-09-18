@@ -10,7 +10,7 @@ To test using vagrant, issue the following commands:
 
 To install on a remote server, issue
 
-    cd &lt;install path&gt;
+    cd <install path>
     touch IS_REMOTE
     ./apply-puppet.sh
 
