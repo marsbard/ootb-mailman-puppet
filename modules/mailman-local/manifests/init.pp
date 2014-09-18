@@ -14,6 +14,11 @@ class mailman-local{
 	}
 
 
+    #package { "mailman":
+    #    ensure => present,
+    #    before => Class["mailman"],
+    #}
+
     package { "postfix":
         ensure => present,
     }
