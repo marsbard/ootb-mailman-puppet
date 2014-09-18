@@ -2,8 +2,11 @@
 
 cd "`dirname $0`"
 
-
+echo Installing puppet modules...
 ./install-puppet-modules.sh 2>&1 > /dev/null
+
+echo Puppet modules installed
+echo
 
 if [ ! -f "IS_REMOTE" ]
 then
