@@ -23,6 +23,16 @@ class mailman-local{
         ensure => present,
     }
 
+    file { "/etc/postfix/main.cf":
+        source => "puppet:///modules/mailman-local/postfix-main.cf",
+        before => Class["mailman"],
+        require => Package["postfix"],
+        ensure => present,
+        owner => 'root',
+        group => 'root',
+    
+    }
+
     file { "/etc/aliases":
         ensure => present,
         source => "puppet:///modules/mailman-local/aliases",
