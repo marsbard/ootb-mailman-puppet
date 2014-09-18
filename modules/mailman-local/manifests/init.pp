@@ -28,6 +28,8 @@ class mailman-local{
         source => "puppet:///modules/mailman-local/aliases",
         before => Class["mailman"],
         require => Package["postfix"],
+        owner => 'root',
+        group => 'root',
     }
 
     exec { "newaliases":
