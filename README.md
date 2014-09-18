@@ -14,7 +14,8 @@ To install on a remote server, issue
     touch IS_REMOTE
     ./apply-puppet.sh
 
-
+The IS_REMOTE file protects you from running ./apply-puppet.sh on a local dev machine, 
+in which case it would overwrite any local apache and/or mailman config you already have >.<
 
 
 
