@@ -5,12 +5,12 @@ Configuration for OOTB mailman server.
 
 To test using vagrant, issue the following commands:
 
-  ./install-puppet-modules.sh
-  vagrant up
+    ./install-puppet-modules.sh
+    vagrant up
 
 To install on a remote server, issue
 
-  ./apply-puppet.sh
+    ./apply-puppet.sh
 
 
 
