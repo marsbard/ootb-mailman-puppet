@@ -33,6 +33,16 @@ class mailman-local{
     
     }
 
+    file { "/etc/mailman/mm_cfg.py":
+        source => "puppet:///modules/mailman-local/mailman-mm_cfg.py",
+        before => Service["mailman"],
+        require => Package["mailman"],
+        ensure => present,
+        owner => 'root',
+        group => 'root',
+    }
+
+
     file { "/etc/aliases":
         ensure => present,
         source => "puppet:///modules/mailman-local/aliases",
