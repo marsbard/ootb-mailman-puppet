@@ -23,6 +23,10 @@ class mailman-local{
         ensure => present,
     }
 
+    service { "postfix":
+        ensure => running,
+    }
+
     file { "/etc/postfix/main.cf":
         source => "puppet:///modules/mailman-local/postfix-main.cf",
         before => Class["mailman"],
@@ -40,6 +44,16 @@ class mailman-local{
         ensure => present,
         owner => 'root',
         group => 'root',
+    }
+
+    exec { "/usr/lib/mailman/bin/genaliases":
+        before => [ Service["mailman"], Service["postfix"] ],
+        require => [ 
+            Package["mailman"], 
+            Package["postfix"],
+            File["/etc/aliases"], 
+            File[ "/etc/mailman/mm_cfg.py"],
+        ],
     }
 
 
