@@ -47,6 +47,7 @@ class mailman-local{
     }
 
     exec { "/usr/lib/mailman/bin/genaliases":
+        cwd => "/usr/lib/mailman",
         before => [ Service["mailman"], Service["postfix"] ],
         require => [ 
             Package["mailman"], 
